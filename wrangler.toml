@@ -1,0 +1,7 @@
+name = "dsv"
+main = "worker.js"
+compatibility_date = "2026-01-25"
+
+[[routes]]
+pattern = "boomdee.online"
+custom_domain = true
