@@ -1,7 +1,6 @@
-name = "duo-streak-viewer" # 顺便解决名称不匹配的警告
-main = "src/index.js"     # 或者你的入口文件路径
+name = "duo-streak-viewer"
+main = "worker.js"
 
-# 核心配置：使用二级域名作为自定义域名
 [[routes]]
 pattern = "duo.boomdee.online"
 custom_domain = true
