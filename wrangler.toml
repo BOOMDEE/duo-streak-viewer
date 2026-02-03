@@ -1,5 +1,6 @@
 name = "duo-streak-viewer"
 main = "worker.js"
+compatibility_date = "2026-02-03"
 
 [[routes]]
 pattern = "duo.boomdee.online"
