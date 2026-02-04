@@ -14,12 +14,11 @@ export default {
       <head>
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>DuoStreak: ${streak}</title>
+          <title>NODE_STREAK: ${streak}</title>
           <style>
               :root {
-                  --bg: #0a0a0a;
-                  --accent: #58cc02; /* Duolingo 典型的绿色 */
-                  --glass: rgba(255, 255, 255, 0.03);
+                  --bg: #050505;
+                  --accent: #58cc02;
               }
 
               body {
@@ -34,69 +33,105 @@ export default {
                   overflow: hidden;
               }
 
-              /* 这里的环境光晕是加分的关键 */
-              .glow {
+              /* 1. 双层光晕：模拟水波交织感 */
+              .glow-container {
+                  position: absolute;
+                  width: 100%;
+                  height: 100%;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+              }
+
+              /* 第一层：深层、缓慢、大范围 */
+              .glow-1 {
+                  position: absolute;
+                  width: 500px;
+                  height: 500px;
+                  background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+                  filter: blur(100px);
+                  opacity: 0.08;
+                  animation: wave-1 12s infinite alternate ease-in-out;
+              }
+
+              /* 第二层：核心、稍快、亮一点 */
+              .glow-2 {
                   position: absolute;
                   width: 300px;
                   height: 300px;
-                  background: var(--accent);
-                  filter: blur(120px);
-                  opacity: 0.15;
-                  z-index: 0;
-                  animation: pulse 8s infinite alternate;
+                  background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+                  filter: blur(80px);
+                  opacity: 0.12;
+                  animation: wave-2 7s infinite alternate-reverse ease-in-out;
               }
 
               .container {
                   position: relative;
-                  z-index: 1;
+                  z-index: 10;
                   text-align: center;
               }
 
+              /* 2. 呼吸式排版：文字微弱舒张 */
               .streak-value {
                   font-size: 10rem;
                   font-weight: 800;
-                  letter-spacing: -5px;
                   line-height: 1;
-                  background: linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.1) 100%);
+                  margin: 0;
+                  background: linear-gradient(180deg, #fff 40%, rgba(255,255,255,0.1) 100%);
                   -webkit-background-clip: text;
                   -webkit-text-fill-color: transparent;
-                  filter: drop-shadow(0 0 30px rgba(88, 204, 2, 0.3));
+                  filter: drop-shadow(0 0 30px rgba(88, 204, 2, 0.25));
+                  /* 核心动画：letter-spacing 舒张 */
+                  animation: breathe-text 8s infinite alternate ease-in-out;
               }
 
               .label {
                   font-size: 0.7rem;
                   letter-spacing: 5px;
                   text-transform: uppercase;
-                  opacity: 0.4;
-                  margin-top: -10px;
+                  opacity: 0.3;
+                  margin-top: 10px;
               }
 
               .quote {
                   margin-top: 4rem;
                   font-style: italic;
                   font-family: serif;
-                  font-size: 1rem;
-                  opacity: 0.7;
+                  font-size: 0.95rem;
+                  opacity: 0.5;
                   max-width: 300px;
               }
 
-              .status-bar {
-                  position: absolute;
-                  bottom: 40px;
-                  font-family: monospace;
-                  font-size: 10px;
-                  color: var(--accent);
-                  opacity: 0.5;
+              /* 光晕 1 动画：大范围慢漂 */
+              @keyframes wave-1 {
+                  from { transform: translate(-5%, -5%) scale(1); opacity: 0.05; }
+                  to { transform: translate(5%, 5%) scale(1.2); opacity: 0.1; }
               }
 
-              @keyframes pulse {
-                  from { transform: scale(1); opacity: 0.1; }
-                  to { transform: scale(1.5); opacity: 0.2; }
+              /* 光晕 2 动画：中范围快漂 */
+              @keyframes wave-2 {
+                  from { transform: translate(3%, 3%) scale(1.1); }
+                  to { transform: translate(-3%, -3%) scale(0.9); }
+              }
+
+              /* 呼吸式排版动画 */
+              @keyframes breathe-text {
+                  from { 
+                      letter-spacing: -6px; 
+                      filter: drop-shadow(0 0 20px rgba(88, 204, 2, 0.2));
+                  }
+                  to { 
+                      letter-spacing: -2px; 
+                      filter: drop-shadow(0 0 45px rgba(88, 204, 2, 0.4));
+                  }
               }
           </style>
       </head>
       <body>
-          <div class="glow"></div>
+          <div class="glow-container">
+              <div class="glow-1"></div>
+              <div class="glow-2"></div>
+          </div>
           <div class="container">
               <div class="streak-value">${streak}</div>
               <div class="label">Consecutive Days</div>
