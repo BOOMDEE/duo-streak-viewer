@@ -9,7 +9,6 @@ I wasn't satisfied with just a flame icon in an app. I needed a **minimalist, ra
 - **Edge-Driven Architecture**: Powered by Cloudflare Workers for sub-millisecond responses across 300+ global PoPs.
 - **Respiratory Typography**: A massive 10rem streak counter with dynamic `letter-spacing` animation, simulating a physical heartbeat.
 - **Dual-Layer Ambient Glow**: Two-tier particle interference animations that mimic the rhythmic ripples of Hangzhou's West Lake.
-- **Geospatial Color Matrix**: Automatically detects visitor location (CN, FR, US, HK, etc.) and shifts the theme's hue dynamically.
 - **Extreme Robustness**: Successfully handled **119,664+** requests monthly, featuring graceful 502/504 error handling for high-load scenarios.
 
 ### 🛠️ Tech Stack
